@@ -1,0 +1,127 @@
+<div>
+    Debug: <input type="text" name="firstName" ng-model="contact.firstName" />
+    <form class="form" action="#">
+       <div class="row">
+            <div class="col-sm-6">
+                <legend>COUNTRY</legend>
+                <select class="form-control" id="selCountry" name="selCountry" ng-model="currentCountry" ng-options="country.country_desc for country in countries" 
+                         ng-change="changeCountry()">
+                </select>
+            </div>   
+            <div class="col-sm-6"  ng-hide="languages.length == 0">
+               <legend>LANGUAGE</legend>
+                <select  class="form-control" id="selLanguage" name="selLanguage" ng-model="currentLanguage" ng-options="language.language_desc for language in languages" ng-change="changeLanguage()">
+                </select>
+            </div>   
+        </div>
+        <br>
+        <legend><span class="copy-header" translate="UNSUBSCRIBE_TITLE"></legend>
+        <span class="copy-header" translate="UNSUBSCRIBE_COPY"></span>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" id="mktOptInChk"  ng-true-value="'1'" ng-false-value="'0'" ng-model="contact.privacyOptions.sendCommunications" name="privacy[]" />MARKETING OPT-IN<br>
+                <span class="copy-header" translate="OPTIN_COMMUNICATIONS" />
+               
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" id="profOptInChk"  ng-true-value="'1'" ng-false-value="'0'"  ng-model="contact.privacyOptions.analysis" name="privacy[]" />
+                PROFILING OPT-IN<br>
+                <span class="copy-header"  translate="OPTIN_ANALYSIS" />
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" id="OptOutChk" ng-true-value="'1'" ng-false-value="'0'"  ng-model="contact.privacyOptions.exitCommunity" name="privacy[]"><span class="copy-header"  translate="EXIT_COMMUNITY_TITLE"><br>
+                <span class="copy-header"  translate="EXIT_COMMUNITY">
+            </label>
+        </div>
+        <div class="form-group">
+            <a class="btn btn-default" ng-click="saveContact()" role="button"><span class="copy-header" translate="UNSUBSCRIBE_CTA" /></a>
+        </div>
+    </form>                      
+</div>
+
+
+<!-- MODALS -->
+<div  modal="showKOModal"  class="modal fade" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">WARNING</h4>
+            </div>
+            <div class="modal-body">
+                <p>User not found!</p>
+            </div>
+            <div class="modal-footer">
+                
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="mktOptInModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Marketing</h4>
+            </div>
+            <div class="modal-body">
+                <p><span class="copy-header"  translate="OPTIN_COMMUNICATIONS_POPUP_BODY" /></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="mktProfilingModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Profiling</h4>
+            </div>
+            <div class="modal-body">
+                <p><span class="copy-header"  translate="OPTIN_ANALYSIS_POPUP_BODY" /></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- MODALS -->
+
+ <script type="text/javascript">
+        jQuery(document).ready(function () {
+
+
+
+            $('#mktOptInChk').bind('change', function () {
+                var status = $('#mktOptInChk').prop('checked');
+                if (!status) {
+                    $('#mktOptInModal').modal();
+                }
+                
+            });
+            
+            $('#profOptInChk').bind('change', function () {
+                var status = $('#profOptInChk').prop('checked');
+                if (!status) {
+                    $('#mktProfilingModal').modal();
+                }
+                
+            })
+
+            $('#clearForm').bind('click', function () {
+                $("#mainForm")[0].reset();
+            });
+
+        });
+    </script>    

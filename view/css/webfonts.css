@@ -1,0 +1,49 @@
+@font-face {
+	font-family: 'AvenirLTStd85Heavy';
+	src: url('../fonts/avenirltstd-heavy-webfont.eot');
+	src: url('../fonts/avenirltstd-heavy-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/avenirltstd-heavy-webfont.ttf') format('truetype'),
+		 url('../fonts/avenirltstd-heavy-webfont.svg#AvenirLTStd85Heavy') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'AvenirLTStd45Book';
+	src: url('../fonts/avenirltstd-book-webfont.eot');
+	src: url('../fonts/avenirltstd-book-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/avenirltstd-book-webfont.ttf') format('truetype'),
+		 url('../fonts/avenirltstd-book-webfont.svg#AvenirLTStd45Book') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'AvenirLTStd35Light';
+	src: url('../fonts/avenirltstd-light-webfont.eot');
+	src: url('../fonts/avenirltstd-light-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/avenirltstd-light-webfont.ttf') format('truetype'),
+		 url('../fonts/avenirltstd-light-webfont.svg#AvenirLTStd35Light') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'AvenirLTStd65Medium';
+	src: url('../fonts/avenirltstd-medium-webfont.eot');
+	src: url('../fonts/avenirltstd-medium-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/avenirltstd-medium-webfont.ttf') format('truetype'),
+		 url('../fonts/avenirltstd-medium-webfont.svg#AvenirLTStd65Medium') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'AvenirLTStd55Roman';
+	src: url('../fonts/avenirltstd-roman-webfont.eot');
+	src: url('../fonts/avenirltstd-roman-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/avenirltstd-roman-webfont.ttf') format('truetype'),
+		 url('../fonts/avenirltstd-roman-webfont.svg#AvenirLTStd55Roman') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}

@@ -1,0 +1,23 @@
+<div>
+    <form role="form">
+        <fieldset>
+            <legend>Select store</legend>
+            <div class="row">
+                <div class="col-sm-4 col-lg-4 col-sm-offset-4 col-lg-offset-4 text-center">
+                    
+                    <select id="store" name="storeSel" ng-model="store" ng-options="store.nom_tiers | uppercase for store in stores" />
+                </div>
+            </div>
+
+        </fieldset>    
+        <br>
+        <br>
+        <fieldset>
+            <div class="row">
+                <div class="col-sm-4 col-lg-4 col-sm-offset-4 col-lg-offset-4 text-center">
+                    <button type="button" ng-click="onSelect()" id="submitForm" class="btn btn-primary">Select <span class="glyphicon glyphicon-play-circle black"></span></button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

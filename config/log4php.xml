@@ -1,0 +1,32 @@
+<configuration xmlns="http://logging.apache.org/log4php/">
+ 
+    <appender name="consoleAppender" class="LoggerAppenderConsole" />
+    
+    <appender name="fileAppender" class="LoggerAppenderDailyFile">
+        <layout class="LoggerLayoutPattern">
+            <param name="conversionPattern" value="%date [%logger] %message%newline" />
+        </layout>
+        <param name="file" value="c:\temp\baccarat-%s.log" />
+        <param name="datePattern" value="Y-m-d" />
+    </appender>
+    
+    <appender name="fileAppenderAC" class="LoggerAppenderDailyFile">
+        <layout class="LoggerLayoutPattern">
+            <param name="conversionPattern" value="%date [%logger] %message%newline" />
+        </layout>
+        <param name="file" value="c:\temp\baccarat-AC-%s.log" />
+        <param name="datePattern" value="Y-m-d" />
+    </appender>
+ 
+    <root>
+        <level value="DEBUG" /> 
+        <appender_ref ref="consoleAppender" />
+        <appender_ref ref="fileAppender" />
+    </root>
+    
+    <logger name="ACCESS-CONTROL">
+        <level value="INFO" /> 
+        <appender_ref ref="consoleAppender" />
+        <appender_ref ref="fileAppenderAC" />
+    </logger>
+</configuration>

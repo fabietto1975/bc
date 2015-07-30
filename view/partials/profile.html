@@ -1,0 +1,338 @@
+<form id="contactForm" role="form" class="form"  ng-submit="saveContact()">
+    <fieldset>
+        <legend>{{ 'CONTACT_INFORMATION_LABEL' | translate }}</legend>
+
+
+        <div class="row">
+            <div class="col-sm-4 col-lg-4">
+                <div class="form-group">
+                    <label for="middlename" class="control-label">{{'TITLE'| translate}}</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-user"></i>
+                        </span>
+                        <select id="title" name="title" ng-model="contact.title" class="form-control">
+                            <option value="">{{'TITLE_PH'| translate }}</option>
+                            <option value="Mr">{{'TITLE_MR'| translate }}</option>
+                            <option value="Ms">{{'TITLE_MS'| translate }}</option>
+                            <option value="Mrs">{{'TITLE_MRS'| translate }}</option>
+                        </select>
+                    </div>
+                </div>    
+            </div>    
+            <div class="col-sm-4 col-lg-4">
+                <div class="form-group">
+                    <label for="firstname" class="control-label">{{'FIRST_NAME'| translate}}</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-user"></i>
+                        </span>
+                        <input type="text" class="form-control"  id="firstname" name="firstname" ng-model="contact.firstName"  placeholder="{{'FIRST_NAME_PH'| translate }}" />
+                    </div>
+                </div>	
+            </div>			
+            <div class="col-sm-4 col-lg-4">
+                <div class="form-group">
+                    <label for="lastname" class="control-label">{{'LAST_NAME'| translate}}</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-user"></i>
+                        </span>
+                        <input type="text" class="form-control"  id="lastname" name="lastname" ng-model="contact.lastName" placeholder="{{'LAST_NAME_PH'| translate }}" />
+                    </div>
+                </div>	
+            </div>		
+        </div>
+
+
+
+        <div class="row">                                                            	
+            <div class="col-sm-4 col-lg-4">
+                <div class="form-group">
+                    <label for="dateofbirth" class="control-label">{{'DATEOFBIRTH'| translate}}</label>
+                    <div class="input-group date date-picker">
+                        <span class="input-group-btn">
+                            <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                        </span>													                
+                        <input type="text" class="form-control date" id="dateofbirth" is-open="opened" name="dateofbirth" ng-model="contact.birthDay" placeholder="MM-DD" />
+                    </div>
+                </div>	
+            </div>		
+            <div class="col-sm-4 col-lg-4">
+                <div class="form-group">
+                    <label for="email" class="control-label">{{'EMAIL'| translate}}</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-envelope"></i>
+                        </span>
+                        <input type="text" class="form-control" id="email" ng-model="contact.email" name="email" placeholder="{{'EMAIL_PH'| translate}}" />
+                    </div>    
+                </div>	
+            </div>
+            <div class="col-sm-4 col-lg-4">
+                <div class="form-group">
+                    <label for="email" class="control-label">{{'MOBILE'| translate}}</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-mobile"></i>
+                        </span>
+                        <input type="text" class="form-control" id="mobile" ng-model="contact.mobile" name="mobile" placeholder="{{'MOBILE_PH'| translate}}" />
+                    </div>    
+                </div>    
+            </div>    	
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-lg-4">
+                <div class="form-group">
+                    <label for="country" class="control-label">{{'NATIONALITY'| translate}}</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-map-marker"></i>
+                        </span>
+                        <select id="nationality" class="form-control" ng-model="contact.nationality" name="nationality" ng-options="nationality.country_desc for nationality in nationalities"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </fieldset>
+
+    <fieldset>
+        <legend>{{ 'ADDRESS_INFORMATION_LABEL' | translate }}</legend>
+        <div class="row">
+            <div class="col-sm-4 col-lg-4">
+                <div class="form-group">
+                    <label for="country" class="control-label">{{'COUNTRY'| translate}}</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-map-marker"></i>
+                        </span>
+                        <select id="selCountry" class="form-control" ng-model="contact.country" name="selCountry"  ng-options="country.country_desc for country in countries" ng-change="changeCountry()"></select>
+                    </div>
+                </div>	
+            </div>		
+            <div class="col-sm-4 col-lg-4">
+                <div class="form-group">
+                    <label for="stateProvince" class="control-label">{{'STATE_PROVINCE'| translate}}</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-map-marker"></i>
+                        </span>
+                        <select id="stateProvince" class="form-control" ng-model="contact.stateprovince" name="stateProvince" ng-options="stateprovince.stateprovince_desc for stateprovince in stateprovinces" ng-change="changeStateProvince()"></select>
+                    </div>
+                </div>	
+            </div>		
+            <div class="col-sm-4 col-lg-4">
+                <div class="form-group">
+                    <label for="town-city" class="control-label">{{'TOWN_CITY'| translate}}</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-map-marker"></i>
+                        </span>
+                        <select id="selCity" class="form-control" name="selCity" ng-model="contact.city" ng-options="city.city_desc for city in cities"></select>
+                    </div>
+                </div>	
+            </div>		
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-lg-4">
+                <div class="form-group">
+                    <label for="zip-code" class="control-label">{{'ZIP_CODE'| translate}}</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-map-marker"></i>
+                        </span>
+                        <input type="text" class="form-control" id="zip-code" name="zip-code" ng-model="contact.zipCode" placeholder="{{'ZIP_CODE_PH'| translate}}" />
+                    </div>
+                </div>	
+            </div>		
+            <div class="col-sm-8 col-lg-8">
+                <div class="form-group">
+                    <label for="address" class="control-label">{{'ADDRESS'| translate}}</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-home"></i>
+                        </span>
+                        <input type="text" class="form-control" id="address" name="address" ng-model="contact.address" placeholder="{{'ADDRESS_PH'| translate}}" />
+                    </div>
+                </div>	
+            </div>		
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>{{'PREFERENCES_LABEL'| translate}}</legend>
+        <div class="row">        
+            <div class="col-sm-5 col-lg-5">
+                <div class="form-group">
+                    <label for="contact-media-preferred" class="control-label">Preferred Contact Media </label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-comments"></i>
+                        </span>
+                        <select id="contact-media-preferred" name="contact-media-preferred" ng-model="contact.contactMediaPref" class="form-control">
+                            <option value="">Please select your Preferred Contact Media</option>
+                            <option value="email">Email</option>
+                            <option value="mobile">Mobile</option>
+                        </select>
+                    </div>    
+                </div>    
+            </div>             
+
+            <div class="col-sm-5 col-lg-5">
+                <div class="form-group">
+                    <label for="selLanguage" class="control-label">{{'PREF_LANGUAGE'| translate}}</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-language"></i>
+                        </span>
+                        <select id="selLanguage" class="form-control" name="selLanguage" ng-model="contact.preferredLanguage" ng-options="language.language_id as language.language_desc | translate for language in languages"></select>
+                    </div>    
+                </div>    
+            </div>        
+        </div>
+    </fieldset>
+
+
+    <fieldset>
+        <legend>{{'PRIVACY_CONSENTS_LABEL'| translate}}</legend>
+        <div class="row">	
+            <div class="col-sm-12">
+                <div class="checkbox">
+                    <label> <input type="checkbox"/>{{'PRIVACY_CONSENTS_1'| translate}}<br/>
+                        {{'PRIVACY_CONSENTS_TEXT_1'| translate}}
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label> <input type="checkbox"/>{{'PRIVACY_CONSENTS_2'| translate}}<br/>
+                        {{'PRIVACY_CONSENTS_TEXT_2'| translate}}
+                    </label>
+                </div>																
+            </div>
+        </div>
+        <br>
+    </fieldset>
+
+    <fieldset>
+        <div class="row">
+            <div class="col-sm-8">
+                <button type="submit" id="submitForm" class="btn btn-primary">Submit <span class="glyphicon glyphicon-play-circle black"></span></button>
+                <button type="button" class="btn default">CANCEL</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+<!--
+    <form class="form" action="#">
+        <br>
+        <legend><span class="copy-header" translate="UNSUBSCRIBE_TITLE"></legend>
+        <span class="copy-header" translate="UNSUBSCRIBE_COPY"></span>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" id="mktOptInChk"  ng-true-value="'1'" ng-false-value="'0'" ng-model="contact.privacyOptions.sendCommunications" name="privacy[]" />MARKETING OPT-IN<br>
+                <span class="copy-header" translate="OPTIN_COMMUNICATIONS" />
+               
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" id="profOptInChk"  ng-true-value="'1'" ng-false-value="'0'"  ng-model="contact.privacyOptions.analysis" name="privacy[]" />
+                PROFILING OPT-IN<br>
+                <span class="copy-header"  translate="OPTIN_ANALYSIS" />
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" id="OptOutChk" ng-true-value="'1'" ng-false-value="'0'"  ng-model="contact.privacyOptions.exitCommunity" name="privacy[]"><span class="copy-header"  translate="EXIT_COMMUNITY_TITLE"><br>
+                <span class="copy-header"  translate="EXIT_COMMUNITY">
+            </label>
+        </div>
+        <div class="form-group">
+            <a class="btn btn-default" ng-click="saveContact()" role="button"><span class="copy-header" translate="UNSUBSCRIBE_CTA" /></a>
+        </div>
+    </form>                      
+-->
+
+
+<!-- MODALS -->
+<div  modal="showKOModal"  class="modal fade" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">WARNING</h4>
+            </div>
+            <div class="modal-body">
+                <p>User not found!</p>
+            </div>
+            <div class="modal-footer">
+                
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="mktOptInModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Marketing</h4>
+            </div>
+            <div class="modal-body">
+                <p><span class="copy-header"  translate="OPTIN_COMMUNICATIONS_POPUP_BODY" /></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="mktProfilingModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Profiling</h4>
+            </div>
+            <div class="modal-body">
+                <p><span class="copy-header"  translate="OPTIN_ANALYSIS_POPUP_BODY" /></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- MODALS -->
+
+ <script type="text/javascript">
+        jQuery(document).ready(function () {
+
+
+
+            $('#mktOptInChk').bind('change', function () {
+                var status = $('#mktOptInChk').prop('checked');
+                if (!status) {
+                    $('#mktOptInModal').modal();
+                }
+                
+            });
+            
+            $('#profOptInChk').bind('change', function () {
+                var status = $('#profOptInChk').prop('checked');
+                if (!status) {
+                    $('#mktProfilingModal').modal();
+                }
+                
+            })
+
+            $('#clearForm').bind('click', function () {
+                $("#mainForm")[0].reset();
+            });
+
+        });
+    </script>    

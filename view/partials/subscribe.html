@@ -1,0 +1,306 @@
+<form id="contactForm" role="form" class="form"  ng-submit="addContact()">
+    <fieldset>
+        <legend>{{ 'CONTACT_INFORMATION_LABEL' | translate }}</legend>
+
+
+        <div class="row">
+            <div class="col-sm-4 col-lg-4">
+                <div class="form-group">
+                    <label for="middlename" class="control-label">{{'TITLE'| translate}} *</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-user"></i>
+                        </span>
+                        <select id="title" name="title" ng-model="contact.title" class="form-control">
+                            <option value="">{{'TITLE_PH'| translate }}</option>
+                            <option value="Mr">{{'TITLE_MR'| translate }}</option>
+                            <option value="Ms">{{'TITLE_MS'| translate }}</option>
+                            <option value="Mrs">{{'TITLE_MRS'| translate }}</option>
+                        </select>
+                    </div>
+                </div>    
+            </div>    
+            <div class="col-sm-4 col-lg-4">
+                <div class="form-group">
+                    <label for="firstname" class="control-label">{{'FIRST_NAME'| translate}} *</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-user"></i>
+                        </span>
+                        <input type="text" class="form-control"  id="firstname" name="firstname" ng-model="contact.firstName"  placeholder="{{'FIRST_NAME_PH'| translate }}" />
+                    </div>
+                </div>	
+            </div>			
+            <div class="col-sm-4 col-lg-4">
+                <div class="form-group">
+                    <label for="lastname" class="control-label">{{'LAST_NAME'| translate}} *</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-user"></i>
+                        </span>
+                        <input type="text" class="form-control"  id="lastname" name="lastname" ng-model="contact.lastName" placeholder="{{'LAST_NAME_PH'| translate }}" />
+                    </div>
+                </div>	
+            </div>		
+        </div>
+
+
+
+        <div class="row">                                                            	
+            <div class="col-sm-2 col-lg-2">
+                <div class="form-group">
+                    <label for="dateofbirth" class="control-label">{{'DAYOFBIRTH'| translate}}</label>
+                    <div class="input-group date date-picker">
+                        <span class="input-group-btn">
+                            <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                        </span>													                
+                        <input type="text" class="form-control date" id="dayofbirth" is-open="opened" name="dayofbirth" ng-model="contact.birthDay" placeholder="DD" />
+                    </div>
+                </div>	
+            </div>		
+            <div class="col-sm-2 col-lg-2">
+                <div class="form-group">
+                    <label for="dateofbirth" class="control-label">{{'MONTHOFBIRTH'| translate}}</label>
+                    <div class="input-group date date-picker">
+                        <span class="input-group-btn">
+                            <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                        </span>													                
+                        <input type="text" class="form-control date" id="dayofbirth" is-open="opened" name="dayofbirth" ng-model="contact.birthMonth" placeholder="MM" />
+                    </div>
+                </div>	
+            </div>		
+            <div class="col-sm-4 col-lg-4">
+                <div class="form-group">
+                    <label for="email" class="control-label">{{'AGEBRACKET'| translate}}</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-envelope"></i>
+                        </span>
+                        <select class="form-control" id="agebracket" ng-model="contact.agebracket" name="email">
+                            <option value='' selected>{{'AGEBRACKET_PH'|translate}}</option>
+                            <option value='4'>&lt; 26</option>
+                            <option value='1'>27-35</option>
+                            <option value='2'>36-50</option>
+                            <option value='3'>51-65</option>
+                            <option value='3'>&gt 65</option>
+                        </select>
+                    </div>    
+                </div>	
+            </div>
+            <div class="col-sm-4 col-lg-4">
+                <div class="form-group">
+                    <label for="country" class="control-label">{{'NATIONALITY'| translate}} * </label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-map-marker"></i>
+                        </span>
+                        <select id="nationality" class="form-control" ng-model="contact.nationality" name="nationality" ng-options="nationality.country_desc for nationality in nationalities"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </fieldset>
+
+    <fieldset>
+        <legend>{{ 'ADDRESS_INFORMATION_LABEL' | translate }}</legend>
+        <div class="row">
+            <div class="col-sm-4 col-lg-4">
+                <div class="form-group">
+                    <label for="country" class="control-label">{{'COUNTRY'| translate}} *</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-map-marker"></i>
+                        </span>
+                        <select id="selCountry" class="form-control" ng-model="contact.country" name="selCountry"  ng-options="country.country_desc for country in countries" ng-change="changeCountry()"></select>
+                    </div>
+                </div>	
+            </div>		
+            <div class="col-sm-4 col-lg-4">
+                <div class="form-group">
+                    <label for="stateProvince" class="control-label">{{'STATE_PROVINCE'| translate}} *</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-map-marker"></i>
+                        </span>
+                        <select id="stateProvince" class="form-control" ng-model="contact.stateprovince" name="stateProvince" ng-options="stateprovince.stateprovince_desc for stateprovince in stateprovinces" ng-change="changeStateProvince()"></select>
+                    </div>
+                </div>	
+            </div>		
+            <div class="col-sm-4 col-lg-4">
+                <div class="form-group">
+                    <label for="town-city" class="control-label">{{'TOWN_CITY'| translate}} *</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-map-marker"></i>
+                        </span>
+                        <select id="selCity" class="form-control" name="selCity" ng-model="contact.city" ng-options="city.city_desc for city in cities"></select>
+                    </div>
+                </div>	
+            </div>	
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-lg-4">
+                <div class="form-group">
+                    <label for="zip-code" class="control-label">{{'ZIP_CODE'| translate}} *</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-map-marker"></i>
+                        </span>
+                        <input type="text" class="form-control" id="zip-code" name="zip-code" ng-model="contact.zipCode" placeholder="{{'ZIP_CODE_PH'| translate}}" />
+                    </div>
+                </div>	
+            </div>		
+            <div class="col-sm-8 col-lg-8">
+                <div class="form-group">
+                    <label for="address" class="control-label">{{'ADDRESS'| translate}} *</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-home"></i>
+                        </span>
+                        <input type="text" class="form-control" id="address" name="address" ng-model="contact.address" placeholder="{{'ADDRESS_PH'| translate}}" />
+                    </div>
+                </div>	
+            </div>		
+            <div class="col-sm-4 col-lg-4">
+                <div class="form-group">
+                    <label for="email" class="control-label">{{'EMAIL'| translate}} *</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-envelope"></i>
+                        </span>
+                        <input type="text" class="form-control" id="email" ng-model="contact.email" name="email" placeholder="{{'EMAIL_PH'| translate}}" />
+                    </div>    
+                </div>	
+            </div>
+            <div class="col-sm-4 col-lg-4">
+                <div class="form-group">
+                    <label for="email" class="control-label">{{'MOBILE'| translate}} *</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-mobile"></i>
+                        </span>
+                        <input type="text" class="form-control" id="mobile" ng-model="contact.mobile" name="mobile" placeholder="{{'MOBILE_PH'| translate}}" />
+                    </div>    
+                </div>    
+            </div>    	
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>{{'PREFERENCES_LABEL'| translate}}</legend>
+        <div class="row">        
+            <div class="col-sm-6 col-lg-6">
+                <div class="form-group">
+                    <label for="contact-media-preferred" class="control-label">{{'PREFERRED_CONTACT_METHOD'|translate}} *</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-comments"></i>
+                        </span>
+                        <select id="contact-media-preferred" name="contact-media-preferred" ng-model="contact.contactMediaPref" class="form-control">
+                            <option value="">{{'PREFERRED_CONTACT_METHOD_PH'|translate}}</option>
+                            <option value="1">Mobile : phone call</option>
+                            <option value="2">Mobile : text</option>
+                            <option value="3">Email</option>
+                            <option value="4">Postal Mail</option>
+                        </select>
+                    </div>    
+                </div>    
+            </div>             
+            <div class="col-sm-6 col-lg-6">
+                <div class="form-group">
+                    <label for="selLanguage" class="control-label">{{'PREF_LANGUAGE'| translate}} *</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-language"></i>
+                        </span>
+                        <select id="selLanguage" class="form-control" name="selLanguage" ng-model="contact.language" ng-options="language.language_desc | translate for language in languages"></select>
+                    </div>    
+                </div>    
+            </div>        
+        </div>
+    </fieldset>
+
+
+    <fieldset>
+        <legend>{{'PRIVACY_CONSENTS_LABEL'| translate}}</legend>
+        <div class="row">	
+            <div class="col-sm-12">
+                <div class="checkbox">
+                    <label> <input type="checkbox"/>{{'PRIVACY_CONSENTS_1'| translate}}<br/>
+                        {{'PRIVACY_CONSENTS_TEXT_1'| translate}}
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label> <input type="checkbox"/>{{'PRIVACY_CONSENTS_2'| translate}}<br/>
+                        {{'PRIVACY_CONSENTS_TEXT_2'| translate}}
+                    </label>
+                </div>																
+            </div>
+        </div>
+        <br>
+    </fieldset>
+
+    <fieldset>
+        <legend>{{'OTHER_INFO_LABEL'| translate}}</legend>
+        <div class="row">	
+            <div class="col-sm-4 col-lg-4">
+                <div class="form-group">
+                    <label for="selLanguage" class="control-label">{{'MARITAL_STATUS'| translate}}</label>
+                    <div class="input-group input-icon right">
+                        <span class="input-group-addon">
+                            <i class="fa fa-diamond"></i>
+                        </span>
+                        <select class="form-control" id="agebracket" ng-model="contact.maritalstatus" name="email">
+                            <option value='' selected>{{'MARITAL_STATUS_PH'|translate}}</option>
+                            <option value='1'>Single</option>
+                            <option value='2'>Married</option>
+                            <option value='3'>Cohabiting</option>
+                            <option value='4'>Divorced</option>
+                            <option value='4'>Widowed</option>
+                        </select>
+                    </div>    
+                </div>    
+            </div>        
+        </div>
+        <br>
+    </fieldset>
+
+
+    <fieldset>
+        <div class="row">
+            <div class="col-sm-8">
+                <button type="submit" id="submitForm" class="btn btn-primary">Submit <span class="glyphicon glyphicon-play-circle black"></span></button>
+                <button type="button" class="btn default">CANCEL</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+
+<!-- MODALS -->
+<script  type="text/ng-template" id="registrationok.html">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Customer registration completed</h4>
+    </div>
+    <div class="modal-body">
+        <p>The customer information have been correctly registered</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" id="close-subscribe" ng-click="close()" class="btn btn-default">Close</button>
+    </div>
+</script><!-- /.modal -->
+
+<script  type="text/ng-template" id="registrationko.html">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Customer registration not completed</h4>
+    </div>
+    <div class="modal-body">
+        <p>Please fill all required fields</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" id="close-subscribe" ng-click="close()" class="btn btn-default">Close</button>
+    </div>
+</script><!-- /.modal -->

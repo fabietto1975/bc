@@ -1,0 +1,13 @@
+<!-- HEADER -->
+<div class="header text-left" ng-controller="headerController">
+    <a ng-click="toHome()">
+        <img src="images/logo.png" alt="logo" class="logo-responsive"/>
+    </a>
+    <ul class="main-menu">
+        <li><a ng-click="toSearch()">search client</a></li>
+        <li><a ng-click="toSubscribe()">new client</a></li>
+        <li><select ng-change="changeLanguage()" id="language" ng-model="$root.language" ng-options="language.language_desc | translate for language in $root.languages" /></li>
+    </ul>
+    <div style="clear:both;"></div>
+</div>
+<!-- //HEADER -->

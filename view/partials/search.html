@@ -1,0 +1,173 @@
+<div>
+    <form role="form" class="form" action="#">
+        <fieldset>
+            <legend>{{'SEARCH_CLIENT'| translate}}</legend>
+            <div class="row">
+                <div class="col-sm-4 col-lg-4">
+                    <div class="form-group">
+                        <label for="firstname" class="control-label">{{'FIRST_NAME'|translate}}</label>
+                        <div class="input-group input-icon right">
+                            <span class="input-group-addon">
+                                <i class="fa fa-user"></i>
+                            </span>
+                            <input type="text" class="form-control" ng-model="contactData.firstname" id="firstname" name="firstname"  placeholder="First name" />
+                        </div>
+                    </div>	
+                </div>		                                                       	
+                <div class="col-sm-4 col-lg-4">
+                    <div class="form-group">
+                        <label for="lastname" class="control-label">{{'LAST_NAME'|translate}}</label>
+                        <div class="input-group input-icon right">
+                            <span class="input-group-addon">
+                                <i class="fa fa-user"></i>
+                            </span>
+                            <input type="text" class="form-control" ng-model="contactData.lastname" id="lastname" name="lastname"  placeholder="Last name" />
+                        </div>
+                    </div>	
+                </div>	
+                <div class="col-sm-4 col-lg-4">
+                    <div class="form-group">
+                        <label for="middlename" class="control-label">{{'EMAIL'|translate}}</label>
+                        <div class="input-group input-icon right">
+                            <span class="input-group-addon">
+                                <i class="fa fa-envelope"></i>
+                            </span>
+                            <input type="text" class="form-control" ng-model="contactData.email" id="middlename" name="middlename"  placeholder="Email" />
+                        </div>
+                    </div>    
+                </div>
+                <div class="col-sm-4 col-lg-4">
+                    <div class="form-group">
+                        <label for="firstname" class="control-label">Mobile</label>
+                        <div class="input-group input-icon right">
+                            <span class="input-group-addon">
+                                <i class="fa fa-phone"></i>
+                            </span>
+                            <input type="text" class="form-control" ng-model="contactData.mobile" id="firstname" name="mobile"  placeholder="Mobile" />
+                        </div>
+                    </div>	
+                </div>	
+
+                <div class="col-sm-4 col-lg-4">
+                    <div class="form-group">
+                        <label for="country" class="control-label">{{'COUNTRY'| translate}} *</label>
+                        <div class="input-group input-icon right">
+                            <span class="input-group-addon">
+                                <i class="fa fa-map-marker"></i>
+                            </span>
+                            <select id="selCountry" class="form-control" ng-model="contactData.country" name="selCountry"  ng-options="country.country_desc for country in countries" ng-change="changeCountry()"></select>
+                        </div>
+                    </div>	
+                </div>   
+
+                <div class="col-sm-4 col-lg-4">
+                    <div class="form-group">
+                        <label for="country" class="control-label">{{'NATIONALITY'| translate}} * </label>
+                        <div class="input-group input-icon right">
+                            <span class="input-group-addon">
+                                <i class="fa fa-map-marker"></i>
+                            </span>
+                            <select id="nationality" class="form-control" ng-model="contactData_.nationality" name="nationality" ng-options="nationality.country_desc for nationality in nationalities"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 col-lg-2">
+                    <div class="form-group">
+                        <label for="dateofbirth" class="control-label">{{'DAYOFBIRTH'| translate}}</label>
+                        <div class="input-group date date-picker">
+                            <span class="input-group-btn">
+                                <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                            </span>													                
+                            <input type="text" class="form-control date" id="dayofbirth" is-open="opened" name="dayofbirth" ng-model="contactData.cf_755" placeholder="DD" />
+                        </div>
+                    </div>	
+                </div>		
+                <div class="col-sm-2 col-lg-2">
+                    <div class="form-group">
+                        <label for="dateofbirth" class="control-label">{{'MONTHOFBIRTH'| translate}}</label>
+                        <div class="input-group date date-picker">
+                            <span class="input-group-btn">
+                                <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                            </span>													                
+                            <input type="text" class="form-control date" id="dayofbirth" is-open="opened" name="dayofbirth" ng-model="contactData.birthMonth" placeholder="MM" />
+                        </div>
+                    </div>	
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-lg-offset-10 col-lg-2 col-sm-offset-10 col-sm-2">
+                    <div class="form-group">
+                        <label for="firstname" class="control-label">&nbsp;</label>
+                        <div class="input-group">
+                            <button type="button" id="search-button" ng-click="searchContact();" class="btn btn-primary">Search <span class="glyphicon glyphicon-play-circle black"></span></button>
+                        </div>
+                    </div>
+                </div>    	
+            </div>
+    </form>
+</div>
+<div class="row">
+    <h3 class="with-border">{{'SEARCH_RESULTS' | translate}}</h3>
+
+    <table class="table table-striped" id="result-table">
+        <thead>
+            <tr>
+                <th>{{'FIRST_NAME'|translate}}</th>
+                <th>{{'LAST_NAME'|translate}}</th>
+                <th>{{'EMAIL'|translate}}</th>
+                <th></th>
+            </tr>
+        </thead>    
+        <tbody ng:repeat="contact in searchResults">
+            <tr>
+                <td>{{contact.firstName}}</td>
+                <td>{{contact.lastName}}</td>
+                <td>{{contact.email}}</td>
+                <td><a href="main.php#/profile?contactId={{contact.contactID}}&countryCode={{contact.country}}" class="btn btn-primary"> Profile <span class="glyphicon glyphicon-play-circle black"></span></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">John Doe</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="item" class="control-label">Item:</label>
+                        <div class="input-group input-icon right">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-gift"></i>
+                            </span>
+                            <input type="text" class="form-control" id="item" name="item">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="receipt" class="control-label">Receipt:</label>
+                        <div class="input-group input-icon right">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-euro"></i>
+                            </span>
+                            <input type="text" class="form-control" id="receipt" name="receipt">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+<!-- END CONTENT -->
+
