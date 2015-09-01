@@ -1,17 +1,52 @@
 <?php
-$cf_country = 'cf_763';  
-$cf_countryDesc = 'cf_765';
-//$cf_stateProvince = '';
-//$cf_stateProvinceDesc = '';
-$cf_townCity = 'cf_759';
-$cf_townCityDesc = 'cf_761';
-$cf_zipCode = 'cf_847';
 
-$cf_birthDay = 'cf_757';
-$cf_birthMonth = 'cf_755';
-
-$cf_contactMediaPref = 'cf_813';
-$cf_preferredLanguage = 'cf_815';
-$cf_preferredLanguageDesc = 'cf_817';
-
+$cf_age_bracket = "cf_751";
+$cf_reason_of_visit = "cf_753";
+$cf_month_of_birth = "cf_755";
+$cf_day_of_birth = "cf_757";
+$cf_city = "cf_759";
+$cf_city_description = "cf_761";
+$cf_country = "cf_763";
+$cf_country_description = "cf_765";
+$cf_nationality = "cf_767";
+$cf_nationality_description = "cf_769";
+$cf_company = "cf_771";
+$cf_first_name_westernchars = "cf_773";
+$cf_last_name_westernchars = "cf_775";
+$cf_maritial_status = "cf_777";
+$cf_moment_i_care_date = "cf_779";
+$cf_moment_i_care_description = "cf_781";
+$cf_moment_i_care_typology = "cf_783";
+$cf_product_preferences = "cf_785";
+$cf_occupation = "cf_787";
+$cf_vip_category = "cf_789";
+$cf_people_i_care_first_name = "cf_791";
+$cf_people_i_care_last_name = "cf_793";
+$cf_people_i_care_typology = "cf_795";
+$cf_person_i_work_for_typology = "cf_797";
+$cf_person_i_work_for_address = "cf_799";
+$cf_person_i_work_for_city = "cf_801";
+$cf_person_i_work_for_city_description = "cf_803";
+$cf_person_i_work_for_country_description = "cf_805";
+$cf_person_i_work_for_country = "cf_807";
+$cf_preferred_boutique_description = "cf_809";
+$cf_preferred_boutique = "cf_811";
+$cf_preferred_contact_method = "cf_813";
+$cf_preferred_language = "cf_815";
+$cf_preferred_language_description = "cf_817";
+$cf_contact_typology = "cf_819";
+$cf_project_type_of_client = "cf_821";
+$cf_project_city = "cf_823";
+$cf_project_city_description = "cf_825";
+$cf_project_country = "cf_827";
+$cf_project_country_description = "cf_829";
+$cf_vat_number = "cf_831";
+$cf_resale_number = "cf_833";
+$cf_hotel_restourant_name = "cf_835";
+$cf_customer_representative_role = "cf_837";
+$cf_hotel_restourant_role = "cf_839";
+$cf_corporate_client_role = "cf_841";
+$cf_press_member_role = "cf_843";
+$cf_employee_role = "cf_845";
+$cf_zipcode = "cf_847";
 ?>
