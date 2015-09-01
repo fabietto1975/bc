@@ -48,6 +48,7 @@ require_once('../backend/libraries/autoload.php');
     <script src="<?php echo BASE_URL ?>/view/assets/javascripts/app/headerController.js"></script>
     <script src="<?php echo BASE_URL ?>/view/assets/javascripts/app/profileController.js"></script>
     <script src="<?php echo BASE_URL ?>/view/assets/javascripts/app/searchController.js"></script>
+    <script src="<?php echo BASE_URL ?>/view/assets/javascripts/app/loginController.js"></script>
     <script src="<?php echo BASE_URL ?>/view/assets/javascripts/app/services.js?<?php echo time() ?>"></script>
 
     <script>

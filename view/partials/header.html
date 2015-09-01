@@ -6,7 +6,11 @@
     <ul class="main-menu">
         <li><a ng-click="toSearch()">search client</a></li>
         <li><a ng-click="toSubscribe()">new client</a></li>
-        <li><select ng-change="changeLanguage()" id="language" ng-model="$root.language" ng-options="language.language_desc | translate for language in $root.languages" /></li>
+        <li>
+            <select ng-change="changeLanguage()" id="language" ng-model="$root.language" ng-options="language.language_desc | translate for language in $root.languages"></select>
+        </li>
+        <li>Welcome {{$root.globals.currentUser.loggedUser}}</li>
+        <li><a ng-click="doLogout()">Logout</a></li>
     </ul>
     <div style="clear:both;"></div>
 </div>

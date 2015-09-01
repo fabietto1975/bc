@@ -47,14 +47,25 @@
 
 
         <div class="row">                                                            	
-            <div class="col-sm-4 col-lg-4">
+            <div class="col-sm-2 col-lg-2">
                 <div class="form-group">
-                    <label for="dateofbirth" class="control-label">{{'DATEOFBIRTH'| translate}}</label>
+                    <label for="dateofbirth" class="control-label">{{'DAYOFBIRTH'| translate}}</label>
                     <div class="input-group date date-picker">
                         <span class="input-group-btn">
                             <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
                         </span>													                
-                        <input type="text" class="form-control date" id="dateofbirth" is-open="opened" name="dateofbirth" ng-model="contact.birthDay" placeholder="MM-DD" />
+                        <input type="text" class="form-control date" id="dayofbirth" is-open="opened" name="dayofbirth" ng-model="contact.birthDay" placeholder="DD" />
+                    </div>
+                </div>	
+            </div>		
+            <div class="col-sm-2 col-lg-2">
+                <div class="form-group">
+                    <label for="dateofbirth" class="control-label">{{'MONTHOFBIRTH'| translate}}</label>
+                    <div class="input-group date date-picker">
+                        <span class="input-group-btn">
+                            <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                        </span>													                
+                        <input type="text" class="form-control date" id="dayofbirth" is-open="opened" name="dayofbirth" ng-model="contact.birthMonth" placeholder="MM" />
                     </div>
                 </div>	
             </div>		
@@ -186,7 +197,7 @@
                         <span class="input-group-addon">
                             <i class="fa fa-language"></i>
                         </span>
-                        <select id="selLanguage" class="form-control" name="selLanguage" ng-model="contact.preferredLanguage" ng-options="language.language_id as language.language_desc | translate for language in languages"></select>
+                        <select id="selLanguage" class="form-control" name="selLanguage" ng-model="contact.preferredLanguage" ng-options="language.language_desc | translate for language in languages"></select><!-- language.language_id as .. -->
                     </div>    
                 </div>    
             </div>        

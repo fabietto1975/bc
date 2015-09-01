@@ -38,6 +38,7 @@ class ContactBean implements JsonSerializable {
     private $title;
     private $email;
     private $birthDay;
+    private $birthMonth;
     private $country;
     private $countryDesc;
     private $stateProvince;
@@ -49,6 +50,7 @@ class ContactBean implements JsonSerializable {
     private $mobile;
     private $homePhone;
     private $preferredLanguage;
+    private $preferredLanguageDesc;
     private $contactMediaPref;
     public $privacyOptions = array();
     private $brandLineInterested = array();
@@ -106,27 +108,29 @@ class ContactBean implements JsonSerializable {
     }
 
     public function bindResults($result) {
-
+        
         include (APP_ROOT . '/config/vtiger-customfields.php');
         include (APP_ROOT . '/config/config-local.php');
         //print_r($result);
         if (count($result) < 1)
             return self::BIND_ERROR;
-        $result ['birthday'] = substr($result ['birthday'], 5);
+
         $this->setContactID($result ['id']);
         $this->setTitle($result ['title']);
         $this->setFirstName($result ['firstname']);
         $this->setMiddleName($result [$cf_middleName]);
         $this->setLastName($result ['lastname']);
         $this->setEmail($result ['email']);
-        $this->setBirthDay($result ['birthday']);
+        $this->setBirthDay($result [$cf_birthDay]);
+        $this->setBirthMonth($result [$cf_birthMonth]);
         $this->setMobile($result ['mobile']);
         $this->setHomePhone($result ['homephone']);
         $this->setPreferredLanguage($result [$cf_preferredLanguage]);
-        $this->setCountry($result ['mailingcountry']);
-        $this->setStateProvince($result ['mailingstate']);
-        $this->setTownCity($result ['mailingcity']);
-        $this->setZipCode($result ['mailingzip']);
+        $this->setPreferredLanguageDesc($result [$cf_preferredLanguageDesc]);
+        $this->setCountry($result [$cf_country]);//ex. mailingcountry
+        $this->setStateProvince($result [$cf_stateProvince]); //ex. mailingstate
+        $this->setTownCity($result [$cf_townCity]);//ex mailingcity
+        $this->setZipCode($result [$cf_zipCode]);//mailingzip
         $this->setAddress($result ['mailingstreet']);
         $this->setContactMediaPref($result [$cf_contactMediaPref]);
         $this->setNotes($result [$cf_notes]);
@@ -207,17 +211,23 @@ class ContactBean implements JsonSerializable {
         //$result [$cf_middleName] = $this->getMiddleName();
         $result ['lastname'] = $this->getLastName();
         $result ['email'] = $this->getEmail();
-        $result ['birthday'] = $this->getBirthDay();
+        $result [$cf_birthDay] = $this->getBirthDay();
+        $result [$cf_birthMonth] = $this->getBirthMonth();
         $result ['mobile'] = $this->getMobile();
         $result ['homephone'] = $this->getHomePhone();
-        //$result [$cf_preferredLanguage] = $this->getPreferredLanguage();
-        $result ['mailingcountry'] = $this->getCountry();
+        $result [$cf_preferredLanguage] = $this->getPreferredLanguage();
+        $result [$cf_preferredLanguageDesc] = $this->getPreferredLanguageDesc();
+        $result [$cf_country] = $this->getCountry();
         $result ['mailingstate'] = $this->getStateProvince();
-        $result ['mailingcity'] = $this->getTownCity();
-        $result ['mailingzip'] = $this->getZipCode();
+        $result [$cf_townCity] = $this->getTownCity();
+        $result [$cf_zipCode] = $this->getZipCode();//mailingzip
         $result ['mailingstreet'] = $this->getAddress();
-        /*
+        
+        $result [$cf_countryDesc] = $this->getCountryDesc();
+        $result [$cf_townCityDesc] = $this->getTownCityDesc();
+        
         $result [$cf_contactMediaPref] = $this->getContactMediaPref();
+        /*
         $result [$cf_notes] = $this->getNotes();
         $result [$cf_barcodeNumber] = $this->getBarcodeNumber();
         $result [$cf_lastEditedBy] = $this->getLastEditedBy();
@@ -257,7 +267,7 @@ class ContactBean implements JsonSerializable {
         /*
         $result [$cf_countryExt] = $this->getCountryDesc();
         $result [$cf_stateExt] = $this->getStateProvinceDesc();
-        $result [$cf_cityExt] = $this->getTownCityDesc();
+        
 
         $result [$cf_barcodeLocal] = $this->getBarcodeLocal();
         $result [$cf_cardLocal] = $this->getCardLocal();
@@ -278,6 +288,11 @@ class ContactBean implements JsonSerializable {
         $result[$cf_unsubscribeCampaignOtherReason] = $this->unsubscribeCampaignOtherReason;
         $result[$cf_unsubscribeCampaignOtherReasonText] = $this->unsubscribeCampaignOtherReasonText;
         */
+        /*
+        print_r($this);
+        print_r($result);
+        die();
+         */
         return $result;
     }
 
@@ -422,19 +437,21 @@ class ContactBean implements JsonSerializable {
         return $this;
     }
 
-    public function getBirthDay() {
-        /*
-        if(strlen($birthDay) > 5){
-            if(is_numeric(substr($birthDay, 0, 4))){
-                $birthDay = substr($birthDay, 5);
-            }
-        } 
-        */  
+    public function getBirthDay() { 
         return $this->birthDay;
     }
 
     public function setBirthDay($birthDay) {
         $this->birthDay = $birthDay;
+        return $this;
+    }
+    
+    public function getBirthMonth() {
+        return $this->birthMonth;
+    }
+
+    public function setBirthMonth($birthMonth) {
+        $this->birthMonth = $birthMonth;
         return $this;
     }
 
@@ -507,6 +524,14 @@ class ContactBean implements JsonSerializable {
 
     public function setPreferredLanguage($preferredLanguage) {
         $this->preferredLanguage = $preferredLanguage;
+    }
+    
+    public function getPreferredLanguageDesc() {
+        return $this->preferredLanguageDesc;
+    }
+
+    public function setPreferredLanguageDesc($preferredLanguageDesc) {
+        $this->preferredLanguageDesc = $preferredLanguageDesc;
     }
 
     public function getContactMediaPref() {
@@ -837,6 +862,7 @@ class ContactBean implements JsonSerializable {
             'title' => $this->title,
             'email' => $this->email,
             'birthDay' => $this->birthDay,
+            'birthMonth' => $this->birthMonth,
             'country' => $this->country,
             'countryDesc' => $this->countryDesc,
             'stateProvince' => $this->stateProvince,
@@ -848,6 +874,7 @@ class ContactBean implements JsonSerializable {
             'mobile' => $this->mobile,
             'homePhone' => $this->homePhone,
             'preferredLanguage' => $this->preferredLanguage,
+            'preferredLanguageDesc' => $this->preferredLanguageDesc,
             'contactMediaPref' => $this->contactMediaPref,
             'privacyOptions' => $this->privacyOptions,
             'brandLineInterested' => $this->brandLineInterested,

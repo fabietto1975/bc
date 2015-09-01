@@ -81,10 +81,12 @@ class ContactService {
         if (empty($parameters['city'])) {
             array_push($missingFields, 'city');
         }
+        /*
+         * FABIO, a cosa serve?
         if (empty($parameters['language'])) {
             array_push($missingFields, 'language');
         }
-
+        */
 
         if ((count($missingFields) > 0) || ($existingEmail) || ($invalidEmail) || ($invalidDate)) {
             return array(
@@ -333,8 +335,10 @@ class ContactService {
         $lastNameLocale = isset($req["lastNameLocale"]) ? $req["lastNameLocale"] : "";
 
         $country = isset($req["country"]["country_id"]) ? $req["country"]["country_id"] : "";
+        $countryDesc = isset($req["country"]["country_desc"]) ? $req["country"]["country_desc"] : "";
         $stateProvince = isset($req["stateprovince"]["stateprovince_id"]) ? $req["stateprovince"]["stateprovince_id"] : "";
         $townCity = isset($req["city"]["city_id"]) ? $req["city"]["city_id"] : "";
+        $townCityDesc = isset($req["city"]["city_desc"]) ? $req["city"]["city_desc"] : "";
         $zipCode = isset($req["zipCode"]) ? $req["zipCode"] : "";
         $address = isset($req["address"]) ? $req["address"] : "";
 
@@ -342,13 +346,14 @@ class ContactService {
 
         $email = isset($req["email"]) ? $req["email"] : "";
 
-        $birthDayMonthDay = isset($req["birthDay"]) ? $req["birthDay"] : "";
-        $birthDay = '1970' . '-' . $birthDayMonthDay;
+        $birthDay = isset($req["birthDay"]) ? $req["birthDay"] : "";
+        $birthMonth = isset($req["birthMonth"]) ? $req["birthMonth"] : "";
         $mobile = isset($req["mobile"]) ? $req["mobile"] : "";
         $homePhone = isset($req["phone"]) ? $req["phone"] : "";
 
         $preferredLanguage = isset($req["preferredLanguage"]["language_id"]) ? $req["preferredLanguage"]["language_id"] : "";
-        $contactMediaPref = isset($req["contactMediaPreferred"]) ? $req["contactMediaPreferred"] : "";
+        $preferredLanguageDesc = isset($req["preferredLanguage"]["language_desc"]) ? $req["preferredLanguage"]["language_desc"] : "";
+        $contactMediaPref = isset($req["contactMediaPref"]) ? $req["contactMediaPref"] : "";
 
         $privacy = isset($req["privacyPreferences"]) ? $req["privacyPreferences"] : NULL;
         $barcodeNumber = isset($req["barcodeId"]) ? $req["barcodeId"] : "";
@@ -372,12 +377,16 @@ class ContactService {
         $contactBean->setLastName($lastName);
         $contactBean->setEmail($email);
         $contactBean->setBirthDay($birthDay);
+        $contactBean->setBirthMonth($birthMonth);
         $contactBean->setMobile($mobile);
         $contactBean->setHomePhone($homePhone);
         $contactBean->setPreferredLanguage($preferredLanguage);
+        $contactBean->setPreferredLanguageDesc($preferredLanguageDesc);
         $contactBean->setCountry($country);
+        $contactBean->setCountryDesc($countryDesc);
         $contactBean->setStateProvince($stateProvince);
         $contactBean->setTownCity($townCity);
+        $contactBean->setTownCityDesc($townCityDesc);
         $contactBean->setZipCode($zipCode);
         $contactBean->setAddress($address);
         $contactBean->setContactMediaPref($contactMediaPref);
