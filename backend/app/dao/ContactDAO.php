@@ -70,7 +70,10 @@ class ContactDAO extends DAOAbstract implements DAOInterface {
     public function update($contactBean) {
 
         $valueMap = $contactBean->bindToVTigerEntity();
-
+        /*
+        print_r($valueMap);
+        die();
+        */
         $record = $this->wsclient->entityUpdate($this::$MODULE, $valueMap);
         if (!$record) {
             return array(
